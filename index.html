@@ -3,50 +3,56 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Michuelnik – Open-Source & Containerlösungen</title>
-  <meta name="description" content="Entdecke die GitHub- und Docker-Projekte von Michuelnik. Saubere Softwarelösungen, Containerimages und DevOps-Tools.">
+  <title>Michuelnik – Open Source & Containerlösungen</title>
+  <meta name="description" content="Open Source Projekte und Docker Container von Michuelnik. Effiziente, saubere Softwarelösungen auf GitHub und Docker Hub.">
   <link rel="canonical" href="https://michuelnik.github.io/" />
   <meta name="robots" content="index, follow" />
   <style>
     :root {
-      --bg: #fdfdfd;
-      --text: #222;
-      --accent: #0366d6;
-      --muted: #666;
-      --card: #fff;
-      --border: #e0e0e0;
+      --bg: #f9fafb;
+      --text: #1f2937;
+      --accent: #2563eb;
+      --muted: #6b7280;
+      --card: #ffffff;
+      --border: #e5e7eb;
+      --radius: 10px;
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    * {
+      box-sizing: border-box;
     }
 
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background: var(--bg);
-      color: var(--text);
+      font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
       margin: 0;
       padding: 0;
-      line-height: 1.6;
+      background: var(--bg);
+      color: var(--text);
     }
 
     header {
       background: var(--accent);
       color: #fff;
-      padding: 2rem 1rem;
+      padding: 3rem 1rem 2rem;
       text-align: center;
     }
 
     header h1 {
       font-size: 2.5rem;
-      margin: 0 0 0.5rem;
+      margin: 0;
     }
 
     header p {
       font-size: 1.2rem;
-      margin: 0;
+      margin-top: 0.5rem;
+      opacity: 0.9;
     }
 
     main {
       max-width: 1000px;
-      margin: 2rem auto;
-      padding: 0 1rem;
+      margin: 0 auto;
+      padding: 2rem 1rem;
     }
 
     section {
@@ -54,37 +60,37 @@
     }
 
     h2 {
-      font-size: 1.8rem;
+      font-size: 1.6rem;
       margin-bottom: 1rem;
       border-bottom: 2px solid var(--accent);
-      display: inline-block;
-      padding-bottom: 0.3rem;
+      padding-bottom: 0.25rem;
     }
 
     .repo-list {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 1.5rem;
     }
 
     .repo {
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 8px;
+      border-radius: var(--radius);
       padding: 1rem;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
-      transition: box-shadow 0.2s ease;
+      box-shadow: var(--shadow);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
     .repo:hover {
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
     }
 
     .repo a {
       color: var(--accent);
       font-weight: 600;
-      text-decoration: none;
       font-size: 1.1rem;
+      text-decoration: none;
     }
 
     .repo p {
@@ -108,25 +114,13 @@
 
     @media (prefers-color-scheme: dark) {
       :root {
-        --bg: #1f1f1f;
-        --text: #f0f0f0;
-        --accent: #4ea1ff;
-        --muted: #aaa;
-        --card: #2a2a2a;
-        --border: #333;
-      }
-
-      body {
-        background: var(--bg);
-        color: var(--text);
-      }
-
-      .repo {
-        border-color: var(--border);
-      }
-
-      footer {
-        border-color: var(--border);
+        --bg: #18181b;
+        --text: #f3f4f6;
+        --accent: #3b82f6;
+        --muted: #9ca3af;
+        --card: #262626;
+        --border: #3f3f46;
+        --shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
       }
     }
   </style>
@@ -135,43 +129,25 @@
 
   <header>
     <h1>Michuelnik</h1>
-    <p>Open-Source Software & Containerlösungen</p>
+    <p>Open Source Software & Containerlösungen</p>
   </header>
 
   <main>
     <section>
       <h2>GitHub Repositories</h2>
       <div class="repo-list">
-<!-- BEGIN GITHUB -->
-<div class="repo">
-  <a href="https://github.com/Michuelnik/docker-ftp-server" target="_blank">docker-ftp-server</a>
-  <p>A simple FTP server, using `vsftpd`.</p>
-</div>
-<div class="repo">
-  <a href="https://github.com/Michuelnik/docker-mediathekview-web" target="_blank">docker-mediathekview-web</a>
-  <p>Mediathekview (14.2.0) in Docker via Web/VNC</p>
-</div>
-<!-- END GITHUB -->
+        <!-- BEGIN GITHUB -->
+        <!-- hier wird automatisch HTML vom Skript eingefügt -->
+        <!-- END GITHUB -->
       </div>
     </section>
 
     <section>
       <h2>Docker Hub Repositories</h2>
       <div class="repo-list">
-<!-- BEGIN DOCKER -->
-<div class="repo">
-  <a href="https://hub.docker.com/r/michuelnik/vsftpd" target="_blank">michuelnik/vsftpd</a>
-  <p>fork of garethflowers/ftp-server - adds VSFTPD_* env vars to override/ add vsftpd.conf settings</p>
-</div>
-<div class="repo">
-  <a href="https://hub.docker.com/r/michuelnik/scanservjs-brother" target="_blank">michuelnik/scanservjs-brother</a>
-  <p>Keine Beschreibung.</p>
-</div>
-<div class="repo">
-  <a href="https://hub.docker.com/r/michuelnik/mediathekview-web" target="_blank">michuelnik/mediathekview-web</a>
-  <p>Mediathekview (14.2.0) in Docker via Web/VNC</p>
-</div>
-<!-- END DOCKER -->
+        <!-- BEGIN DOCKER -->
+        <!-- hier wird automatisch HTML vom Skript eingefügt -->
+        <!-- END DOCKER -->
       </div>
     </section>
   </main>
