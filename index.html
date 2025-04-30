@@ -89,8 +89,8 @@
             const repoDiv = document.createElement('div');
             repoDiv.className = 'repo';
             repoDiv.innerHTML = '
-              <a href="\${repo.html_url}" target="_blank" rel="noopener">\${repo.name}</a>
-              <p>\${repo.description || 'Keine Beschreibung verfügbar.'}</p>
+              <a href="${repo.html_url}" target="_blank" rel="noopener">${repo.name}</a>
+              <p>${repo.description || 'Keine Beschreibung verfügbar.'}</p>
             ';
             container.appendChild(repoDiv);
           });
