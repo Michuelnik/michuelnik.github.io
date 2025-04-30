@@ -4,7 +4,6 @@ GITHUB_USER="Michuelnik"
 DOCKER_USER="michuelnik"
 INDEX_HTML="index.html"
 
-# GitHub API: Alle öffentlichen Repositories
 echo "🌀 GitHub Repositories abrufen..."
 GITHUB_REPOS=$(curl -s "https://api.github.com/users/$GITHUB_USER/repos?per_page=100")
 
@@ -18,13 +17,20 @@ for row in $(echo "${GITHUB_REPOS}" | jq -r '.[] | @base64'); do
   DESC=$(_jq '.description')
   URL=$(_jq '.html_url')
 
+  # ✂️ GitHub Pages Repo auslassen (case-insensitiver Vergleich)
+  NAME_LOWER=$(echo "$NAME" | tr '[:upper:]' '[:lower:]')
+  if [[ "$NAME_LOWER" == "${GITHUB_USER,,}.github.io" ]]; then
+    echo "⏭️  Überspringe GitHub Pages-Repository: $NAME"
+    continue
+  fi
+
+
   GITHUB_HTML+="<div class=\"repo\">\n"
   GITHUB_HTML+="  <a href=\"$URL\" target=\"_blank\">$NAME</a>\n"
   GITHUB_HTML+="  <p>${DESC:-Keine Beschreibung.}</p>\n"
   GITHUB_HTML+="</div>\n"
 done
 
-# Docker Hub API: Repositories (DockerHub hat kein offizielles, dokumentiertes API, wir nutzen einen inoffiziellen Endpunkt)
 echo "🐳 Docker Hub Repositories abrufen..."
 DOCKER_REPOS=$(curl -s "https://hub.docker.com/v2/repositories/$DOCKER_USER/?page_size=100")
 
@@ -41,7 +47,6 @@ for i in $(seq 0 $((REPO_COUNT - 1))); do
   DOCKER_HTML+="</div>\n"
 done
 
-# HTML-Datei aktualisieren (zwischen MARKERN)
 echo "📝 index.html aktualisieren..."
 sed -i "/<!-- BEGIN GITHUB -->/,/<!-- END GITHUB -->/c\\
 <!-- BEGIN GITHUB -->\n$GITHUB_HTML<!-- END GITHUB -->" "$INDEX_HTML"
@@ -49,5 +54,5 @@ sed -i "/<!-- BEGIN GITHUB -->/,/<!-- END GITHUB -->/c\\
 sed -i "/<!-- BEGIN DOCKER -->/,/<!-- END DOCKER -->/c\\
 <!-- BEGIN DOCKER -->\n$DOCKER_HTML<!-- END DOCKER -->" "$INDEX_HTML"
 
-echo "✅ Fertig! Repos wurden in $INDEX_HTML eingefügt."
+echo "✅ Fertig! $INDEX_HTML aktualisiert – ohne Link zur GitHub Pages-Seite."
 
